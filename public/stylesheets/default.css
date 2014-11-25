@@ -492,7 +492,7 @@
 	#featured
 	{
 		height: 200px;
-		background-image: url(images/banner.jpg);
+		background-image: url(../images/banner.jpg);
 		background-position: center;
 		background-size: cover;
 	}

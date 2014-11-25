@@ -106,7 +106,7 @@ a img {
  */
 body {
   font-family: 'Georgia';
-  background-color: #faf9f0;
+  background-color: #f2f2f2;
   color: #444;
 }
 header {
@@ -123,7 +123,7 @@ header {
   border-bottom: 1px solid #0016a1;
   text-shadow: 0px -1px 0px #0016a1;
 }
-.container {
+.my-container {
   width: 500px;
   margin: 50px auto;
   overflow: hidden;
@@ -135,11 +135,11 @@ header {
 .main-content p {
   margin-bottom: 20px;
 }
-.sidebar {
+.my-sidebar {
   float: left;
   width: 200px;
 }
-.sidebar .widget {
+.my-sidebar .widget {
 /*
      * Note the lack of vendor
      * prefixes here. Nib will
@@ -149,11 +149,11 @@ header {
   border-radius: 3px;
   border: 1px solid #ccc;
   margin-left: 20px;
-  background-color: #faf9f0;
+  background-color: #f2f2f2;
   -webkit-box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
   box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
 }
-.sidebar .widget h1 {
+.my-sidebar .widget h1 {
   font-family: 'Quicksand';
   margin: 13px 10px 4px;
   padding-bottom: 10px;
@@ -162,7 +162,7 @@ header {
   border-radius: 2px 2px 0px 0px;
   margin-bottom: 10px;
 }
-.sidebar .widget p {
+.my-sidebar .widget p {
   font-size: 13px;
   padding: 0px 10px;
   margin-bottom: 10px;

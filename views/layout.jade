@@ -2,16 +2,34 @@ doctype
 html
   head
     title #{title}
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet", href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800')
+    link(rel="stylesheet", href='stylesheets/default.css')
+    link(rel="stylesheet", href='stylesheets/fonts.css')
   body
-    header
-      h1 Tower: The Ascent
-    .container
-      .main-content
-        block content
-      .sidebar
-        block sidebar
-    footer
-      p Running on node with Express, Jade and Stylus.
-      p
-        a(href='https://github.com/belteshazzar543/TowerTheAscent') Github page  
+    #header-wrapper
+      #header.container
+        #logo
+          h1
+            a(href="#") Tower: The Ascent
+        #menu
+          ul
+            li.current_page_item
+              a(href="#", accesskey="1", title="") Home
+            li
+              a(href="#", accesskey="2", title="") Play
+            li
+              a(href="#", accesskey="3", title="") Updates
+            li
+              a(href="#", accesskey="4", title="") About
+            li
+              a(href="#", accesskey="5", title="") Contact Us
+    #featured &#160;
+    #wrapper
+      #page.container
+        #content
+          block content
+        #sidebar(align="right")
+          block sidebar
+    #footer
+      #copyright.container
+        p Copyright (c) 2014 Awesome People All rights reserved.
