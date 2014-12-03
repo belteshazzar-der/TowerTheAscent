@@ -6,6 +6,10 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Tower: The Ascent' });
 });
 
+router.get('/play', function(req, res) {
+  res.render('play', { title: 'Tower: The Ascent' });
+});
+
 router.get('/about', function(req, res) {
   res.render('about', { title: 'Tower: The Ascent' });
 });
