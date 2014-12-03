@@ -1,4 +1,4 @@
-	@import url(http://fonts.googleapis.com/css?family=Quicksand:700|Megrim);
+	@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700|Megrim);
 
 	html, body
 	{
@@ -277,13 +277,13 @@
 	.title
 	{
 		margin-bottom: 3em;
-		font-family: 'Quicksand', sans-serif;
+		font-family: 'Yanone Kaffeesatz', sans-serif;
 	}
 
 	.title h2
 	{
 		font-weight: 400;
-		font-size: 2.8em;
+		font-size: 3.2em;
 		color: #323232;
 	}
 	
@@ -453,7 +453,7 @@
 
 	#content p
 	{
-		font-size: 1.2em;
+		font-size: 1.5em;
 	}
 
 /*********************************************************************************/
@@ -495,7 +495,7 @@
 	}
 
 /*********************************************************************************/
-/* Featured                                                                        */
+/* Featured                                                                       */
 /*********************************************************************************/
 
 	#featured
