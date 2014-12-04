@@ -33,7 +33,6 @@
 	ol, ul
 	{
 		padding: 0;
-		list-style: none;
 	}
 	
 	p
@@ -432,7 +431,7 @@
 
 	#wrapper
 	{
-		background: #faf9f0;
+		background: #F1F0EB;
 	}
 	
 	#page
@@ -455,6 +454,13 @@
 	{
 		font-size: 1.5em;
 	}
+
+	#content ul
+	{
+		list-style-type: square;
+	}
+	
+	
 
 /*********************************************************************************/
 /* Sidebar                                                                       */

@@ -1,11 +1,16 @@
 extend layout
 
 block content
-  p
-    | GAME GOES HERE
+
+ p
+  | GAME GOES HERE
 
 block sidebar
-  ul.style1
-    li.first
-      p
-        | Legend for Gold
+  #user
+    h1.text-center.login-title 
+      div.signup-wall
+        ul.user-details
+          li Welcome, #{user.username}.
+          hr
+          li 
+        a(href='/signout') Sign Out

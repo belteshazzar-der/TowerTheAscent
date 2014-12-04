@@ -8,7 +8,17 @@ var isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 	// if the user is not authenticated then redirect him to the login page
-	res.redirect('/');
+	res.redirect('/play');
+}
+
+var alreadyLoggedIn = function (req, res, next) {
+	// if user is authenticated in the session, call the next() to call the next request handler 
+	// Passport adds this method to request object. A middleware is allowed to add properties to
+	// request and response objects
+	if (req.isAuthenticated())
+		res.redirect('/game');
+	// if the user is not authenticated then redirect him to the login page
+	return next();
 }
 
 module.exports = function(passport){
@@ -17,7 +27,7 @@ module.exports = function(passport){
 	  res.render('index', { title: 'Tower: The Ascent' });
 	});
 
-	router.get('/play', function(req, res) {
+	router.get('/play', alreadyLoggedIn, function(req, res) {
 		// Display the Login page with any flash message, if any
 		res.render('play', { title: 'Tower: The Ascent', message: req.flash('message') });
 	});
@@ -61,7 +71,8 @@ module.exports = function(passport){
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {
 		req.logout();
-		res.redirect('/');
+		req.flash('message','You have logged out');
+		res.redirect('/play');
 	});
 
 	return router;
