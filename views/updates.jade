@@ -1,4 +1,8 @@
 extend layout
+script.
+  var addPost = function() {
+   console.log('something')
+  }
 
 block content
 
@@ -12,7 +16,9 @@ block content
 block sidebar
   #stwo-col
     h2 Navigation
-    p Add Post
+    p 
+     button(onClick='addPost()') Add Post
+    
     .sbox2
       p 
       li(ng-repeat="update in updates")
