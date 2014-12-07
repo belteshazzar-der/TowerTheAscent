@@ -13,11 +13,20 @@ var farm_count;
 
 var mainState = {
 
-    preload: function() {   
+    preload: function() {
+		game.stage.backgroundColor = '#71c5cf';
+		game.load.image('Guy', 'assets/Guy-small.png');
+		game.load.image('Suit', 'assets/suit_armor.png');
     },
 
     create: function() { 
 		var myVar=setInterval(function () {myTimer()}, 1000);
+		
+		this.guy = this.game.add.sprite(100, 245, 'Guy');
+        this.guy.anchor.setTo(0.0, -0.5);
+		
+		this.guy = this.game.add.sprite(100, 245, 'Suit');
+        this.guy.anchor.setTo(-4.5, -0.5); 
 
 		click_count = 0;
 
