@@ -42,7 +42,7 @@ var passport = require('passport');
 var expressSession = require('express-session');
 // TODO - Why Do we need this key ?
 app.use(expressSession({
-    secret: 'mySecretKey',
+    secret: 'ItsASecretToEverybody',
     resave: false,
     saveUninitialized: true
 }));

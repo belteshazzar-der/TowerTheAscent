@@ -35,7 +35,8 @@ html(ng-app, ng-init="updates=[{title:'New Monsters',date:'Jan 10, 2014',content
             li
               a(href="/contact", accesskey="5", title="") Contact Us
     p &#160;
-    #featured &#160;
+    unless pageTitle != "homePage"
+      #featured &#160;
     #wrapper
       #page.container
         #content
@@ -52,5 +53,3 @@ html(ng-app, ng-init="updates=[{title:'New Monsters',date:'Jan 10, 2014',content
     if pageTitle == "gamePage"
       script(type="text/javascript", src="main/phaser.min.js")
       script(type="text/javascript", src="main/main.js")
-    else
-      
