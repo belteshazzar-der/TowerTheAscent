@@ -1,30 +1,41 @@
 extend layout
-script.
-  var addPost = function() {
-   console.log('something')
-  }
+
+block vars
+  - var pageTitle = "updatesPage"
 
 block content
-
-  ul(ng-repeat="update in updates")
+ div(id="abc")
+  div(id="addPost")
+   form(action="#", id="form", method="post", name="form")
+    img(id="close", src="images/cancel.png", onclick="div_hide('abc')")
+    h2 Add Post
+     hr
+    input(id="title", name="title", placeholder="Title", type="text")
+    textarea(id="msg", name="message", placeholder="Message")</textarea>
+    a(href="javascript:%20check_empty()", id="submit") Send
+ 
+ ul(ng-repeat="update in updates")
    div(id="{{update.title}}")
     .title
       h2 {{update.title}} - {{update.date}} 
     .post
       p
        {{update.content}} 
+      .comments
+       ul(ng-repeat="comment in update.comments")
+        
       h4 
-       a(href="#title", onclick="editPost()") Edit 
+       a(href="javascript:%20editPost({{update.id}})") Edit 
        | | 
-       a(href="#title", onclick="showComments()") Show Comments ({{update.comments}}) 
+       a(href="javascript:%20showComments({{update.id}})") Show Comments ({{update.comments}}) 
        | | 
-       a(href="#title", onclick="addComment()") Add Comment
+       a(href="javascript:%20addComment({{update.id}})") Add Comment
 
 block sidebar
   #stwo-col
     h2 Navigation
     p 
-     a(href="#title", onclick="addPost()") Add Post
+     a(href="javascript:%20div_show('abc')") Add Post
     
     .sbox2
       p 
