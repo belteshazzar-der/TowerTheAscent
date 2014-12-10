@@ -4,15 +4,16 @@ block vars
   - var pageTitle = "updatesPage"
 
 block content
- div(id="abc")
-  div(id="addPost")
-   form(action="#", id="form", method="post", name="form")
-    img(id="close", src="images/cancel.png", onclick="div_hide('abc')")
-    h2 Add Post
-     hr
-    input(id="title", name="title", placeholder="Title", type="text")
-    textarea(id="msg", name="message", placeholder="Message")</textarea>
-    a(href="javascript:%20check_empty()", id="submit") Send
+ .updatesForm
+  div(id="abc")
+   div(id="addPost")
+    form(action="#", id="form", method="post", name="form")
+     img(id="close", src="images/cancel.png", onclick="div_hide('abc')")
+     h2 Add Post
+      hr
+     input(id="title", name="title", placeholder="Title", type="text")
+     textarea(id="msg", name="message", placeholder="Message")</textarea>
+     a(href="javascript:%20check_empty()", id="submit") Send
  
  ul(ng-repeat="update in updates")
    div(id="{{update.title}}")
