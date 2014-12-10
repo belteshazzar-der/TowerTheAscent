@@ -9,15 +9,22 @@ block content
   ul(ng-repeat="update in updates")
    div(id="{{update.title}}")
     .title
-      h2 {{update.title}} - {{update.date}}
-    p
-      {{update.content}}
+      h2 {{update.title}} - {{update.date}} 
+    .post
+      p
+       {{update.content}} 
+      h4 
+       a(href="#title", onclick="editPost()") Edit 
+       | | 
+       a(href="#title", onclick="showComments()") Show Comments ({{update.comments}}) 
+       | | 
+       a(href="#title", onclick="addComment()") Add Comment
 
 block sidebar
   #stwo-col
     h2 Navigation
     p 
-     button(onClick='addPost()') Add Post
+     a(href="#title", onclick="addPost()") Add Post
     
     .sbox2
       p 

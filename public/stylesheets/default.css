@@ -275,7 +275,7 @@
 
 	.title
 	{
-		margin-bottom: 3em;
+		margin-bottom: 0.7em;
 		font-family: 'Yanone Kaffeesatz', sans-serif;
 	}
 
@@ -295,6 +295,30 @@
 		color: #068900;
 	}
 
+	.post
+	{
+		margin-bottom: 1.5em;
+	}
+
+	.post h4
+	{
+		font-size: 1.25em;
+		color: #323232;
+	}
+
+	.post p
+	{
+		line-height: 180%;
+	}
+	
+	.post .byline
+	{
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 1.1em;
+		color: #068900;
+	}
 /*********************************************************************************/
 /* Header                                                                        */
 /*********************************************************************************/
@@ -460,8 +484,6 @@
 		list-style-type: square;
 	}
 	
-	
-
 /*********************************************************************************/
 /* Sidebar                                                                       */
 /*********************************************************************************/
