@@ -5,15 +5,15 @@ block vars
 
 block content
  .updatesForm
-  div(id="abc")
+  div(id="abc", ng-if="showForm")
    div(id="addPost")
     form(action="#", id="form", method="post", name="form")
-     img(id="close", src="images/cancel.png", onclick="div_hide('abc')")
+     img(id="close", src="images/cancel.png", ng-click="toggleForm()")
      h2 Add Post
       hr
      input(id="title", name="title", placeholder="Title", type="text")
      textarea(id="msg", name="message", placeholder="Message")</textarea>
-     a(href="javascript:%20check_empty()", id="submit") Send
+     a(ng-click="check_empty()", id="submit", href) Send
  
  ul(ng-repeat="update in updates")
    div(id="{{update.title}}")
@@ -26,17 +26,17 @@ block content
        ul(ng-repeat="comment in update.comments")
         
       h4 
-       a(href="javascript:%20editPost({{update.id}})") Edit 
+       a(ng-click="editPost(update.id)", href) Edit  
        | | 
-       a(href="javascript:%20showComments({{update.id}})") Show Comments ({{update.comments}}) 
+       a(ng-click="showComments(update.id)", href) Show Comments ({{update.comments}}) 
        | | 
-       a(href="javascript:%20addComment({{update.id}})") Add Comment
+       a(ng-click="addComment(update.id)", href) Add Comment
 
 block sidebar
   #stwo-col
     h2 Navigation
     p 
-     a(href="javascript:%20div_show('abc')") Add Post
+     a(ng-click:"toggleForm()", href) Add Post
     
     .sbox2
       p 

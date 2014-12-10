@@ -1,5 +1,5 @@
 doctype
-html(ng-app, ng-init="updates=[{title:'New Monsters',date:'Jan 10, 2014',content:'10 Additional monsters were added including the marvelous superheros.  These new creatures can be found randomly through attack stuff. The new creatures are as followed:',comments:'0'},{title:'New Heros',date:'Dec 10, 2013',content:'Tons of new stuff was adding in this update.  There just isnt enough room to talk about everything that was updated.  I did just find a bug while type this out though, good to know.',comments:'1'},{title:'Game Started',date:'Nov 09, 2013',content:'On this artificially created day the game was released.  It instantly soared into popularity and became the best game of all time.',comments:'0'}]")
+html(ng-app='towerApp')
   block vars
   head
     title #{title}
@@ -8,7 +8,8 @@ html(ng-app, ng-init="updates=[{title:'New Monsters',date:'Jan 10, 2014',content
     link(rel="stylesheet", href='stylesheets/default.css')
     link(rel="stylesheet", href='stylesheets/forms.css')
     link(rel="stylesheet", href='stylesheets/fonts.css')
-  body
+    
+  body(ng-controller='towerController')
     a(href="https://github.com/belteshazzar543/TowerTheAscent")
       img(style="position: absolute; top: 0; right: 0; border: 0;", src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67", alt="Fork me on GitHub", data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png")
     #header-wrapper
@@ -49,10 +50,8 @@ html(ng-app, ng-init="updates=[{title:'New Monsters',date:'Jan 10, 2014',content
 
     // Scripts at bottom for faster loading    
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js')
+    script(type="text/javascript", src="main/blog.js")
 
     if pageTitle == "gamePage"
       script(type="text/javascript", src="main/phaser.min.js")
       script(type="text/javascript", src="main/main.js")
-
-    if pageTitle == "updatesPage"
-      script(type="text/javascript", src="main/blog.js")
