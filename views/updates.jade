@@ -7,13 +7,12 @@ block content
  .updatesForm
   div(id="abc", ng-if="showForm")
    div(id="addPost")
-    form(action="#", id="form", method="post", name="form")
-     img(id="close", src="images/cancel.png", ng-click="toggleForm()")
-     h2 Add Post
-      hr
-     input(id="title", name="title", placeholder="Title", type="text")
-     textarea(id="msg", name="message", placeholder="Message")</textarea>
-     a(ng-click="check_empty()", id="submit", href) Send
+    img(id="close", src="../images/cancel.png", ng-click="toggleForm()")
+    h2 Add Post
+     hr
+    input(id="title", name="title", placeholder="Title", type="text", ng-model="newUpdate.title")
+    textarea(id="msg", name="message", placeholder="Message", ng-model="newUpdate.content")</textarea>
+    button(class='btn btn-lg btn-primary btn-block', ng-click='check_empty(newUpdate)') Post Update
  
  ul(ng-repeat="update in updates")
    div(id="{{update.title}}")
@@ -23,20 +22,23 @@ block content
       p
        {{update.content}} 
       .comments
-       ul(ng-repeat="comment in update.comments")
-        
+       div(id="comments{{update.id}}", ng-if="update.showComments")
+        ul(ng-repeat="comment in update.comments")
+         p
+          {{comment}}
       h4 
-       a(ng-click="editPost(update.id)", href) Edit  
+       a(ng-click="editPost(update)", href) Edit  
        | | 
-       a(ng-click="showComments(update.id)", href) Show Comments ({{update.comments}}) 
+       a(ng-click="toggleComments(update)", href, ng-if="!update.showComments") Show Comments ({{update.numComments}}) 
+       a(ng-click="toggleComments(update)", href, ng-if="update.showComments") Hide Comments ({{update.numComments}}) 
        | | 
-       a(ng-click="addComment(update.id)", href) Add Comment
+       a(ng-click="addComment(update)", href) Add Comment
 
 block sidebar
   #stwo-col
     h2 Navigation
     p 
-     a(ng-click:"toggleForm()", href) Add Post
+     a(ng-click="toggleForm()", href) Add Post
     
     .sbox2
       p 
