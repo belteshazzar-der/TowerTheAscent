@@ -8,7 +8,6 @@ var isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 	// if the user is not authenticated then redirect him to the login page
-	req.flash('message','You have to Sign In to play');
 	res.redirect('/play');
 }
 
