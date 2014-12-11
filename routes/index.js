@@ -75,5 +75,8 @@ module.exports = function(passport){
 		res.redirect('/play');
 	});
 
+	router.get('/updateData', function(req, res) {
+	});
+
 	return router;
 }
