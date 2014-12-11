@@ -17,10 +17,19 @@ var mainState = {
 		game.stage.backgroundColor = '#71c5cf';
 		game.load.image('Guy', 'assets/Guy-small.png');
 		game.load.image('Suit', 'assets/suit_armor.png');
+		game.load.image('Background', 'assets/background.png');
+		game.load.image('healthBar', 'assets/healthbar.png');
     },
 
     create: function() { 
 		var myVar=setInterval(function () {myTimer()}, 1000);
+
+		this.background1 = this.game.add.sprite(0, 0, 'Background');
+    	this.background2 = this.game.add.sprite(1929, 0, 'Background');
+    	this.healthbar = this.game.add.sprite(0,0,'healthBar');
+		this.healthbar.cropEnabled = true;
+
+		this.enemyHealth = 100;
 		
 		this.guy = this.game.add.sprite(100, 245, 'Guy');
         this.guy.anchor.setTo(0.0, -0.5);
@@ -51,8 +60,27 @@ var mainState = {
 	
     update: function() {
 		game.input.onDown.addOnce(updateClickText, this);
+
+		moveBackground(this.background1);
+    	moveBackground(this.background2);
+    	console.log(this.enemyHealth);
+		this.healthbar.crop.width = (90 / 100) * this.healthbar.width;
+		this.enemyHealth -= 1;
+		updateHealth(this.enemyHealth, 100, this.healthbar);
     },
 };
+
+function updateHealth(health, totalHealth, healthBar){
+}
+
+function moveBackground(background) {
+	if (background.x < -1929) {
+    	background.x = 1930;
+        background.x -= 1;
+    } else {
+        background.x -=1;
+    }
+}
 
 function myTimer() {
 	var d = new Date();

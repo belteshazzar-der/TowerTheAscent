@@ -13,6 +13,13 @@ block content
     input(id="title", name="title", placeholder="Title", type="text", ng-model="newUpdate.title")
     textarea(id="msg", name="message", placeholder="Message", ng-model="newUpdate.content")</textarea>
     button(class='btn btn-lg btn-primary btn-block', ng-click='check_empty(newUpdate)') Post Update
+  div(id="abc", ng-if="showCommentForm")
+   div(id="addComment")
+    img(id="close", src="../images/cancel.png", ng-click="toggleCommentForm()")
+    h2 Add Comment
+     hr
+    textarea(id="msg", name="message", placeholder="Message", ng-model="comment.msg")</textarea>
+    button(class='btn btn-lg btn-primary btn-block', ng-click='addComment(comment)') Post Comment
  
  ul(ng-repeat="update in updates")
    div(id="{{update.title}}")
@@ -26,13 +33,14 @@ block content
         ul(ng-repeat="comment in update.comments")
          p
           {{comment}}
+
       h4 
        a(ng-click="editPost(update)", href) Edit  
        | | 
        a(ng-click="toggleComments(update)", href, ng-if="!update.showComments") Show Comments ({{update.numComments}}) 
        a(ng-click="toggleComments(update)", href, ng-if="update.showComments") Hide Comments ({{update.numComments}}) 
        | | 
-       a(ng-click="addComment(update)", href) Add Comment
+       a(ng-click="toggleCommentForm(update)", href) Add Comment
 
 block sidebar
   #stwo-col
