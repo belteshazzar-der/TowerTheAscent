@@ -10,29 +10,29 @@ var game = new Phaser.Game(game_width, game_height, Phaser.AUTO, 'gameDiv');
 var text;
 var click_count;
 var farm_count;
+var enemyHealth = 100;
 
 var mainState = {
 
     preload: function() {
 		game.stage.backgroundColor = '#71c5cf';
 		game.load.image('Guy', 'assets/Guy-small.png');
-		game.load.image('Suit', 'assets/suit_armor.png');
-		game.load.image('Background', 'assets/background.png');
-		game.load.image('healthBar', 'assets/healthbar.png');
+		game.load.image('Suit', 'assets/other-small.png');
+		game.load.image('world1Background', 'assets/floor1/world1.png');
     },
 
     create: function() { 
 		var myVar=setInterval(function () {myTimer()}, 1000);
 
-		this.background1 = this.game.add.sprite(0, 0, 'Background');
-    	this.background2 = this.game.add.sprite(1929, 0, 'Background');
+		this.background1 = this.game.add.sprite(0, 0, 'world1Background');
 		
-		this.guy = this.game.add.sprite(100, 245, 'Guy');
-        this.guy.anchor.setTo(0.0, -0.5);
+		this.hero = this.game.add.sprite(100, 410, 'Guy');
+		this.enemy = this.game.add.sprite(600, 380, 'Suit');
+		this.enemyHealthBack = new Phaser.Rectangle(545, 560, 200, 30);
+		this.enemyHealth = new Phaser.Rectangle(545, 560, 200, 30);
+		game.debug.geom(this.enemyHealth,'#ffffff');
+		game.debug.geom(this.enemyHealth,'#ff0000');
 		
-		this.guy = this.game.add.sprite(100, 245, 'Suit');
-        this.guy.anchor.setTo(-4.5, -0.5); 
-
 		click_count = 0;
 
 		click_text = game.add.text(game.world.centerX, game.world.centerY, "- You have clicked -\n0 times !", {
@@ -56,9 +56,7 @@ var mainState = {
 	
     update: function() {
 		game.input.onDown.addOnce(updateClickText, this);
-
-		moveBackground(this.background1);
-    	moveBackground(this.background2);
+		this.enemyHealth.scale.x = enemyHealth / 100;
     },
 };
 
@@ -77,6 +75,8 @@ function myTimer() {
 	farm_count++;
 	timer_text.setText("You farmed: " + farm_count);
 	// do auto-attack or farming increment here?
+	enemyHealth--;
+    console.log(enemyHealth);
 }
 
 function updateClickText() {
