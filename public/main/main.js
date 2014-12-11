@@ -29,7 +29,7 @@ var mainState = {
 		this.game.load.image('Other', 'assets/Other-small.png');
 		this.game.load.image('TitleScreen', 'assets/titlescreen.png');
 		this.game.load.spritesheet('FlashingStart', 'assets/start.png', 350, 50, 4);
-		//this.game.load.image('Background', 'assets/background.png'); // does not exist...
+		this.game.load.image('scrollingBackground', 'assets/background.png'); // does not exist...
 		this.game.load.image('Background', 'assets/floor1/world1.png');
 		this.game.load.image('healthBar', 'assets/healthbar.png');
     },
@@ -56,12 +56,14 @@ var mainState = {
 		this.player_gold = 0;
 		
 		this.background1 = this.game.add.sprite(0, 0, 'Background');
-    	this.background2 = this.game.add.sprite(1929, 0, 'Background');
+		this.scrollingBackground1 = this.game.add.sprite(0, 0, 'scrollingBackground');
+		this.scrollingBackground2 = this.game.add.sprite(2144, 0, 'scrollingBackground');
 		
 		this.hero = this.game.add.sprite(100, 0, 'Guy');
 		this.hero.y = 550 - this.hero.height;
 		this.enemy = this.game.add.sprite(600, 0, 'Other');
 		this.enemy.y = 550 - this.enemy.height;
+		this.enemy.inputEnabled = true;
 		
 		this.player_gold_text = game.add.text(game.world.centerX, game.world.centerY, "Gold:" + this.player_gold, {
 			font: "30px Arial",
@@ -103,6 +105,7 @@ var mainState = {
 		this.click_text.anchor.setTo(0.5, 0.5);
 		
 		this.game.time.events.loop(Phaser.Timer.SECOND, this.myTimer, this);
+		this.enemy.events.onInputDown.add(this.updateClickText, this);
 	},
 	
 	defeat_enemy: function() {
@@ -113,10 +116,9 @@ var mainState = {
     update: function() {
 		//console.log(this.is_titlescreen);
 		if(this.is_titlescreen == false) {
-			console.log("In Game");
-			this.game.input.onDown.addOnce(this.updateClickText, this);
-			//moveBackground(this.background1);
-			//moveBackground(this.background2);
+			//console.log("In Game");
+			moveBackground(this.scrollingBackground1);
+			moveBackground(this.scrollingBackground2);
 		}
 		if(this.space_bar.isDown && this.is_titlescreen == true) {
 			this.is_titlescreen = false;
@@ -152,8 +154,8 @@ var mainState = {
 };
 
 function moveBackground(background) {
-	if (background.x < -1929) {
-    	background.x = 1930;
+	if (background.x < -2144) {
+    	background.x = 2130;
         background.x -= 1;
     } else {
         background.x -=1;
