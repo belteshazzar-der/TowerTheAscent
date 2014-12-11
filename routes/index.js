@@ -56,6 +56,51 @@ module.exports = function(passport){
 		res.render('register',{message: req.flash('message')});
 	});
 
+	var updates = [{id:'1',title:'New Monsters',date:'Jan 10, 2014',content:'10 Additional monsters were added including the marvelous superheros.  These new creatures can be found randomly through attack stuff. The new creatures are as followed:',numComments:0,comments:[],showComments:false},
+  {id:'2',title:'New Heros',date:'Dec 10, 2013',content:'Tons of new stuff was adding in this update.  There just isnt enough room to talk about everything that was updated.  I did just find a bug while type this out though, good to know.',numComments:2, comments:["I love this update!", "So awesome!"],showComments:false},
+  {id:'3',title:'Game Started',date:'Nov 09, 2013',content:'On this artificially created day the game was released.  It instantly soared into popularity and became the best game of all time.',numComments:0, comments:[],showComments:false}]
+
+	router.get('/updateData', function(req, res){
+		res.send(updates);
+	});
+
+	router.post('/addComment', function(req, res){
+		if(!req.isAuthenticated()) {
+			res.status(401);
+			res.end();
+			return;
+		}
+		var updateId = req.body.updateId;
+		var comment = req.body.comment;
+		
+			///comment.update.comments.push(comment.msg)
+			//comment.update.numComments += 1;
+			//$scope.toggleCommentForm();
+			//alert("Form Submitted Successfully...");
+		console.log('Update ID: ' + updateId + '/nComment: ' + comment);
+		res.status(200);
+		res.end();
+	});
+
+	router.post('/updateData', function(req, res){
+		if(!req.isAuthenticated()) {
+			res.status(401);
+			res.end();
+			return;
+		}
+		var update = req.body;
+		for(var i=0;i<updates.length;i++){
+    		if(updates[i].id==update.id){
+        		updates[i] = update;
+        		res.status(200);
+				res.end();
+    		}
+    	}
+		updates.unshift(update)
+		res.status(200);
+		res.end();
+	});
+
 	/* Handle Registration POST */
 	router.post('/signup', passport.authenticate('signup', {
 		successRedirect: '/game',
@@ -73,9 +118,6 @@ module.exports = function(passport){
 		req.logout();
 		req.flash('message','You have logged out');
 		res.redirect('/play');
-	});
-
-	router.get('/updateData', function(req, res) {
 	});
 
 	return router;
