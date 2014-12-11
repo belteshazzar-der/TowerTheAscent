@@ -26,10 +26,6 @@ var mainState = {
 
 		this.background1 = this.game.add.sprite(0, 0, 'Background');
     	this.background2 = this.game.add.sprite(1929, 0, 'Background');
-    	this.healthbar = this.game.add.sprite(0,0,'healthBar');
-		this.healthbar.cropEnabled = true;
-
-		this.enemyHealth = 100;
 		
 		this.guy = this.game.add.sprite(100, 245, 'Guy');
         this.guy.anchor.setTo(0.0, -0.5);
@@ -63,15 +59,8 @@ var mainState = {
 
 		moveBackground(this.background1);
     	moveBackground(this.background2);
-    	console.log(this.enemyHealth);
-		this.healthbar.crop.width = (90 / 100) * this.healthbar.width;
-		this.enemyHealth -= 1;
-		updateHealth(this.enemyHealth, 100, this.healthbar);
     },
 };
-
-function updateHealth(health, totalHealth, healthBar){
-}
 
 function moveBackground(background) {
 	if (background.x < -1929) {
