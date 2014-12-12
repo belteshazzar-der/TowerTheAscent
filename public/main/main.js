@@ -119,17 +119,17 @@ var mainState = {
 		for(var i=0;i<numGold;i++) {
 			var x = Math.floor(Math.random() * 200) + 525;
 			var y = Math.floor(Math.random() * 45) + 535;
+			this.player_gold += 2;
+			this.player_gold_text.setText("Gold:" + this.player_gold);
 			var money = this.game.add.sprite(x, y, 'goldPiece');
 			money.width = 25;
 			money.height = 25;
 			money.inputEnabled = true;
-			money.events.onInputOver.add(this.remove_money, money, this);
+			money.events.onInputOver.add(this.remove_money, money);
   		}
   	},
 
-	remove_money: function(money, world){
-		world.player_gold += 2;
-		world.player_gold_text.setText("Gold: " + world.player_gold);
+	remove_money: function(money){
 		game.world.remove(money);
 	},
 
