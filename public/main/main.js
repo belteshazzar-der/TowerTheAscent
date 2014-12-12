@@ -12,9 +12,9 @@ var player_health;
 var player_health_text;
 var player_gold;
 var player_gold_text;
+var player_attack;
 var enemy_health;
 var enemy_health_text;
-var click_text; //POW
 var current_level;
 var player_level;
 
@@ -51,6 +51,7 @@ var mainState = {
 	start_game: function() {
 		this.player_level = 1;
 		this.current_level = 1;
+		this.player_attack = 1;
 		this.player_health = this.current_level*15;
 		this.enemy_health = this.current_level*10;
 		this.player_gold = 0;
@@ -95,15 +96,7 @@ var mainState = {
 		this.enemy_health_text.anchor.setTo(0.5, 0.5);
 		this.enemy_health_text.x = 600;
 		this.enemy_health_text.y = 300;
-		
-		this.click_text = game.add.text(game.world.centerX, game.world.centerY, "", {
-			font: "65px Arial",
-			fill: "#ff0000",
-			align: "center"
-		});
 
-		this.click_text.anchor.setTo(0.5, 0.5);
-		
 		this.game.time.events.loop(Phaser.Timer.SECOND, this.myTimer, this);
 		this.enemy.events.onInputDown.add(this.updateClickText, this);
 	},
@@ -131,14 +124,31 @@ var mainState = {
 	
 	myTimer: function() {
 		this.attackEnemy();
-		this.click_text.setText(""); // resets this text every second
 	},
 	
 	updateClickText: function() {
 		if(this.is_titlescreen == false){
 			this.attackEnemy();
-			this.click_text.setText("POW!");
+			
+			var text = game.add.text(game.input.mousePointer.x - 20, game.input.mousePointer.y - 20, this.player_attack, {
+				font: "65px Arial",
+				fill: "#ff0000",
+			});	
+    		this.startBounceTween(text);
 		}
+	},
+
+	startBounceTween: function(text) {
+    	var bounce=game.add.tween(text);
+
+    	bounce.to({ x: [600, 680], y: [20, 200]}, 500);
+    	bounce.interpolation(function(v, k){
+            return Phaser.Math.bezierInterpolation(v, k);
+        });
+    	bounce.onComplete.add(function () {
+        	text.destroy();
+    	});
+    	bounce.start();
 	},
 	
 	attackEnemy: function() {

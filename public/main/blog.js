@@ -2,6 +2,8 @@ var towerApp = angular.module('towerApp', []);
 towerApp.controller('towerController', function($scope, $http) {
   $http.get("/updateData")
    .success(function(response) {$scope.updates = response;});
+  $http.get("/isAuthenticated")
+   .success(function(response) {$scope.isAuthenticated = true;});
 
   $scope.showForm = false;
   $scope.showTitle = false;
@@ -23,6 +25,7 @@ towerApp.controller('towerController', function($scope, $http) {
 	$http.post('/addComment', {updateId:comment.update.id, comment:comment.msg}).
   		success(function(data, status, headers, config) {
   			$scope.toggleCommentForm();
+  			location.reload();
   		}).
   		error(function(data, status, headers, config) {
   			if(status == 401) {

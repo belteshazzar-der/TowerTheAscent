@@ -64,6 +64,19 @@ module.exports = function(passport){
 		res.send(updates);
 	});
 
+	router.get('/isAuthenticated', function(req, res){
+		if(!req.isAuthenticated()) {
+			res.status(401);
+			res.end();
+			return;
+		}
+		else {
+			res.status(200);
+			res.end();
+			return;
+		}
+	});
+
 	router.post('/addComment', function(req, res){
 		if(!req.isAuthenticated()) {
 			res.status(401);
@@ -72,12 +85,14 @@ module.exports = function(passport){
 		}
 		var updateId = req.body.updateId;
 		var comment = req.body.comment;
-		
-			///comment.update.comments.push(comment.msg)
-			//comment.update.numComments += 1;
-			//$scope.toggleCommentForm();
-			//alert("Form Submitted Successfully...");
-		console.log('Update ID: ' + updateId + '/nComment: ' + comment);
+		for(var i=0;i<updates.length;i++){
+    		if(updates[i].id==updateId){
+        		updates[i].numComments += 1;
+        		updates[i].comments.push(comment);
+        		res.status(200);
+				res.end();
+    		}
+    	}
 		res.status(200);
 		res.end();
 	});

@@ -35,18 +35,17 @@ block content
           {{comment}}
 
       h4 
-       a(ng-click="editPost(update)", href) Edit  
-       | | 
        a(ng-click="toggleComments(update)", href, ng-if="!update.showComments") Show Comments ({{update.numComments}}) 
-       a(ng-click="toggleComments(update)", href, ng-if="update.showComments") Hide Comments ({{update.numComments}}) 
+       a(ng-click="toggleComments(update)", href, ng-if="update.showComments") Hide Comments ({{update.numComments}}) </a>
        | | 
-       a(ng-click="toggleCommentForm(update)", href) Add Comment
+       a(ng-click="toggleCommentForm(update)", ng-if="isAuthenticated", href) Add Comment 
+       | | 
+       a(ng-click="editPost(update)", ng-if="isAuthenticated", href) Edit  
 
 block sidebar
   #stwo-col
     h2 Navigation
-    p 
-     a(ng-click="toggleForm()", href) Add Post
+    a(ng-click="toggleForm()", href, ng-if='isAuthenticated') Add Post
     
     .sbox2
       p 
