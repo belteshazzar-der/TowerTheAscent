@@ -56,9 +56,9 @@ module.exports = function(passport){
 		res.render('register',{message: req.flash('message')});
 	});
 
-	var updates = [{id:'1',title:'New Monsters',date:'Jan 10, 2014',content:'10 Additional monsters were added including the marvelous superheros.  These new creatures can be found randomly through attack stuff. The new creatures are as followed:',numComments:0,comments:[],showComments:false},
-  {id:'2',title:'New Heros',date:'Dec 10, 2013',content:'Tons of new stuff was adding in this update.  There just isnt enough room to talk about everything that was updated.  I did just find a bug while type this out though, good to know.',numComments:2, comments:["I love this update!", "So awesome!"],showComments:false},
-  {id:'3',title:'Game Started',date:'Nov 09, 2013',content:'On this artificially created day the game was released.  It instantly soared into popularity and became the best game of all time.',numComments:0, comments:[],showComments:false}]
+	var updates = [{id:'1',title:'New Monsters',date:'Tue Jan 10, 2014',content:'10 Additional monsters were added including the marvelous superheros.  These new creatures can be found randomly through attack stuff. The new creatures are as followed:',numComments:0,comments:[],showComments:false},
+  {id:'2',title:'New Heros',date:'Mon Dec 10, 2013',content:'Tons of new stuff was adding in this update.  There just isnt enough room to talk about everything that was updated.  I did just find a bug while type this out though, good to know.',numComments:2, comments:["I love this update!", "So awesome!"],showComments:false},
+  {id:'3',title:'Game Started',date:'Thu Nov 09, 2013',content:'On this artificially created day the game was released.  It instantly soared into popularity and became the best game of all time.',numComments:0, comments:[],showComments:false}]
 
 	router.get('/updateData', function(req, res){
 		res.send(updates);

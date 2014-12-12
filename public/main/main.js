@@ -17,6 +17,7 @@ var enemy_health;
 var enemy_health_text;
 var current_level;
 var player_level;
+var inMenu;
 
 var space_bar;
 var is_titlescreen;
@@ -46,6 +47,7 @@ var mainState = {
 		this.flashingstart.animations.play('flash', 6, true);
 		
 		this.space_bar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		this.inMenu = true;
     },
 	
 	start_game: function() {
@@ -110,11 +112,17 @@ var mainState = {
 		//console.log(this.is_titlescreen);
 		if(this.is_titlescreen == false) {
 			//console.log("In Game");
-			moveBackground(this.scrollingBackground1);
-			moveBackground(this.scrollingBackground2);
+			if(this.inMenu) {
+
+			}
+			else {
+				moveBackground(this.scrollingBackground1);
+				moveBackground(this.scrollingBackground2);
+			}
 		}
 		if(this.space_bar.isDown && this.is_titlescreen == true) {
 			this.is_titlescreen = false;
+			this.inMenu = false;
 			//console.log("Starting game");
 			this.titlescreen.kill();
 			this.flashingstart.kill();
@@ -152,8 +160,8 @@ var mainState = {
 	},
 	
 	attackEnemy: function() {
-		console.log("attacking enemy");
-		this.enemy_health = this.enemy_health - (this.player_level * 2);
+		//console.log("attacking enemy");
+		this.enemy_health = this.enemy_health - (this.player_attack);
 		if(this.enemy_health <= 0) {
 			//enemy is dead
 			this.defeat_enemy();
