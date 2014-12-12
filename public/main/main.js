@@ -141,7 +141,7 @@ var mainState = {
 	startBounceTween: function(text) {
     	var bounce=game.add.tween(text);
 
-    	bounce.to({ x: [600, 680], y: [20, 200]}, 500);
+    	bounce.to({ x: [text.x + 100, text.x + 100], y: [text.y - 100, text.y - 100]}, 600);
     	bounce.interpolation(function(v, k){
             return Phaser.Math.bezierInterpolation(v, k);
         });
