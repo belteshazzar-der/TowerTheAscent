@@ -33,7 +33,7 @@ var mainState = {
 		this.game.load.spritesheet('deathAnimation', 'assets/deathAnimation.png', 128, 128, 40);
 		this.game.load.image('scrollingBackground', 'assets/background.png'); // does not exist...
 		this.game.load.image('Background', 'assets/floor1/world1.png');
-		this.game.load.image('healthBar', 'assets/healthbar.png');
+		this.game.load.spritesheet('SaveButton', 'assets/save_button.png', 100, 50, 1);
 		this.game.load.image('goldPiece', 'assets/gold.png');
     },
 
@@ -100,6 +100,8 @@ var mainState = {
 		this.enemy_health_text.anchor.setTo(0.5, 0.5);
 		this.enemy_health_text.x = 600;
 		this.enemy_health_text.y = 300;
+		
+		this.save_button = this.game.add.button(690, 10, 'SaveButton', this.clickSave, this, 0, 0, 0, 0);
 
 		this.game.time.events.loop(Phaser.Timer.SECOND, this.myTimer, this);
 		this.enemy.events.onInputDown.add(this.updateClickText, this);
@@ -202,6 +204,9 @@ var mainState = {
 		}
 	},
 
+	clickSave: function() {
+		console.log("You clicked save");
+	},
 };
 
 function moveBackground(background) {
