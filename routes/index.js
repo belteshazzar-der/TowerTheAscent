@@ -56,9 +56,9 @@ module.exports = function(passport){
 		res.render('register',{message: req.flash('message')});
 	});
 
-	var updates = [{id:'1',title:'New Monsters',date:'Tue Jan 10, 2014',content:'10 Additional monsters were added including the marvelous superheros.  These new creatures can be found randomly through attack stuff. The new creatures are as followed:',numComments:0,comments:[],showComments:false},
-  {id:'2',title:'New Heros',date:'Mon Dec 10, 2013',content:'Tons of new stuff was adding in this update.  There just isnt enough room to talk about everything that was updated.  I did just find a bug while type this out though, good to know.',numComments:2, comments:["I love this update!", "So awesome!"],showComments:false},
-  {id:'3',title:'Game Started',date:'Thu Nov 09, 2013',content:'On this artificially created day the game was released.  It instantly soared into popularity and became the best game of all time.',numComments:0, comments:[],showComments:false}]
+	var updates = [{id:'1',title:'Site On Line',date:'Thu Dec 11, 2014',content:'A momentous occasion for us! Our amazing website is finally online.  Players can now log in and click on the wonderful enemy.  Enemies drop gold which you can collect.  Go Collect those gold!',numComments:1,comments:["I am so excited that the site is finally online!"],showComments:false},
+  {id:'2',title:'Simple Game Changes',date:'Mon Dec 8, 2014',content:'A lot of simple game change have been added! Scrolling background and enemy attack get out there and fight heros!',numComments:2, comments:["I love this update!", "So awesome!"],showComments:false},
+  {id:'3',title:'Game Started',date:'Mon Dec 1, 2014',content:'We started with our lovely game creation.  Simple updates have made the site an increasly awesomeness.',numComments:0, comments:[],showComments:false}]
 
 	router.get('/updateData', function(req, res){
 		res.send(updates);
