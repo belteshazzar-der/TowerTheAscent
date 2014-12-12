@@ -53,55 +53,7 @@ var mainState = {
     },
 	
 	start_game: function() {
-		this.player_level = 1;
-		this.current_level = 1;
-		this.player_attack = 1;
-		this.player_health = this.current_level*15;
-		this.enemy_health = this.current_level*10;
-		this.player_gold = 0;
-		
-		this.background1 = this.game.add.sprite(0, 0, 'Background');
-		this.scrollingBackground1 = this.game.add.sprite(0, 0, 'scrollingBackground');
-		this.scrollingBackground2 = this.game.add.sprite(2144, 0, 'scrollingBackground');
-		
-		this.hero = this.game.add.sprite(100, 0, 'Guy');
-		this.hero.y = 550 - this.hero.height;
-		this.enemy = this.game.add.sprite(600, 0, 'Other');
-		this.enemy.y = 550 - this.enemy.height;
-		this.enemy.inputEnabled = true;
-		
-		this.player_gold_text = game.add.text(game.world.centerX, game.world.centerY, "Gold:" + this.player_gold, {
-			font: "30px Arial",
-			fill: "#000000",
-			align: "center"
-		});
-
-		this.player_gold_text.anchor.setTo(0.5, 0.5);
-		this.player_gold_text.x = 50;
-		this.player_gold_text.y = 20;
-
-		this.player_health_text = game.add.text(game.world.centerX, game.world.centerY, "Player Health:" + this.player_health, {
-			font: "30px Arial",
-			fill: "#000000",
-			align: "center"
-		});
-
-		this.player_health_text.anchor.setTo(0.5, 0.5);
-		this.player_health_text.x = 200;
-		this.player_health_text.y = 300;
-		
-		this.enemy_health_text = game.add.text(game.world.centerX, game.world.centerY, "Enemy Health:" + this.enemy_health, {
-			font: "30px Arial",
-			fill: "#000000",
-			align: "center"
-		});
-
-		this.enemy_health_text.anchor.setTo(0.5, 0.5);
-		this.enemy_health_text.anchor.setTo(0.5, 0.5);
-		this.enemy_health_text.x = 600;
-		this.enemy_health_text.y = 300;
-		
-		this.save_button = this.game.add.button(690, 10, 'SaveButton', this.clickSave, this, 0, 0, 0, 0);
+		initGame(this);
 
 		this.game.time.events.loop(Phaser.Timer.SECOND, this.myTimer, this);
 		this.enemy.events.onInputDown.add(this.updateClickText, this);
