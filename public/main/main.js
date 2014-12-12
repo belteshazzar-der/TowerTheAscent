@@ -30,9 +30,11 @@ var mainState = {
 		this.game.load.image('Other', 'assets/Other-small.png');
 		this.game.load.image('TitleScreen', 'assets/titlescreen.png');
 		this.game.load.spritesheet('FlashingStart', 'assets/start.png', 350, 50, 4);
+		this.game.load.spritesheet('deathAnimation', 'assets/deathAnimation.png', 128, 128, 40);
 		this.game.load.image('scrollingBackground', 'assets/background.png'); // does not exist...
 		this.game.load.image('Background', 'assets/floor1/world1.png');
 		this.game.load.image('healthBar', 'assets/healthbar.png');
+		this.game.load.image('goldPiece', 'assets/gold.png');
     },
 
     create: function() {
@@ -106,7 +108,33 @@ var mainState = {
 	defeat_enemy: function() {
 		this.current_level++;
         this.enemy_health = this.current_level*10;
-    },
+        this.enemy.visible = false;
+        this.enemy_health_text.visible = false;
+        this.death = this.game.add.sprite(this.enemy.x, this.enemy.y, 'deathAnimation');
+		var anim = this.death.animations.add('death');
+		anim.onComplete.add(this.add_enemy, this);
+		anim.play('death', 60, false);
+
+		var numGold = Math.floor(Math.random() * 6) + 3;
+		for(var i=0;i<numGold;i++) {
+			var x = Math.floor(Math.random() * 200) + 525;
+			var y = Math.floor(Math.random() * 50) + 535;
+			var money = this.game.add.sprite(x, y, 'goldPiece');
+			money.width = 15;
+			money.height = 15;
+			money.events.onInputOver.add(this.remove_money, money);
+  		}
+  	},
+
+	remove_money: function(money){
+		console.log('meow');
+		game.world.remove(money);
+	},
+
+	add_enemy: function(game) {
+		this.enemy.visible = true;
+		this.enemy_health_text.visible = true;
+	},
 	
     update: function() {
 		//console.log(this.is_titlescreen);
@@ -143,6 +171,7 @@ var mainState = {
 				fill: "#ff0000",
 			});	
     		this.startBounceTween(text);
+
 		}
 	},
 
@@ -161,12 +190,14 @@ var mainState = {
 	
 	attackEnemy: function() {
 		//console.log("attacking enemy");
-		this.enemy_health = this.enemy_health - (this.player_attack);
-		if(this.enemy_health <= 0) {
-			//enemy is dead
-			this.defeat_enemy();
+		if(this.enemy.visible == true) {
+			this.enemy_health = this.enemy_health - (this.player_attack);
+			if(this.enemy_health <= 0) {
+				//enemy is dead
+				this.defeat_enemy();
+			}
+			this.enemy_health_text.setText("Enemy Health: " + this.enemy_health);
 		}
-		this.enemy_health_text.setText("Enemy Health: " + this.enemy_health);
 	},
 
 };
