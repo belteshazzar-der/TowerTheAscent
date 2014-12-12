@@ -77,6 +77,19 @@ module.exports = function(passport){
 		}
 	});
 
+	router.get('/isAdmin', function(req, res){
+		if(req.isAuthenticated()) {
+			if(req.user.username == "admin"){
+				res.status(200);
+				res.end();
+				return;
+			}	
+		}
+		res.status(401);
+		res.end();
+		return;
+	});
+
 	router.post('/addComment', function(req, res){
 		if(!req.isAuthenticated()) {
 			res.status(401);

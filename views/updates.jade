@@ -40,12 +40,12 @@ block content
        | | 
        a(ng-click="toggleCommentForm(update)", ng-if="isAuthenticated", href) Add Comment 
        | | 
-       a(ng-click="editPost(update)", ng-if="isAuthenticated", href) Edit  
+       a(ng-click="editPost(update)", ng-if="isAdmin", href) Edit  
 
 block sidebar
   #stwo-col
     h2 Navigation
-    a(ng-click="toggleForm()", href, ng-if='isAuthenticated') Add Post
+    a(ng-click="toggleForm()", href, ng-if='isAdmin') Add Post
     
     .sbox2
       p 

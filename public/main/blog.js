@@ -4,6 +4,8 @@ towerApp.controller('towerController', function($scope, $http) {
    .success(function(response) {$scope.updates = response;});
   $http.get("/isAuthenticated")
    .success(function(response) {$scope.isAuthenticated = true;});
+   $http.get("/isAdmin")
+   .success(function(response) {$scope.isAdmin = true;});
 
   $scope.showForm = false;
   $scope.showTitle = false;
