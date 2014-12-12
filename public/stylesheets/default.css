@@ -528,7 +528,7 @@
 	#featured
 	{
 		height: 200px;
-		background-image: url(../images/banner.gif);
+		background-image: url(../images/banner-static.png);
 		background-position: center;
 		background-size: cover;
 	}
